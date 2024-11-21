@@ -252,16 +252,7 @@ const Page = () => {
         </span>
       </li>
     </ul>
-            {/* <ul className="space-y-2">
-              <li className="hover:text-blue-500" onClick={() => setActiveSection("Dashboard")}>Dashboard</li>
-              <li className="hover:text-blue-500" onClick={() => setActiveSection("Dinaggregation")}>Data Integration & Aggregation</li>
-              <li className="hover:text-blue-500" onClick={() => setActiveSection("BusinessProcess")}>Business Process Analysis</li>
-              <li className="hover:text-blue-500" onClick={() => setActiveSection("CustomerInsights")}>Customer Insights</li>
-              <li className="hover:text-blue-500" onClick={() => setActiveSection("FinancialPerformance")}>Financial Performance</li>
-              <li className="hover:text-blue-500" onClick={() => setActiveSection("MarketnCompetitive")}>Market & Competitive</li>
-              <li className="hover:text-blue-500" onClick={() => setActiveSection("RiskIdentification")}>Risk Identification</li>
-              <li className="hover:text-blue-500" onClick={() => setActiveSection("StrategicPlanning")}>Strategic Planning</li>
-            </ul> */}
+         
           </nav>
         </aside>
 
@@ -269,12 +260,27 @@ const Page = () => {
         <main className="col-span-10 space-y-6">
           {/* Header */}
           <header className="bg-white shadow rounded-lg p-4 flex justify-between items-center">
-            <h1 className="text-2xl font-bold">Search...</h1>
+            
+            {/* Search Text Field */}
+    <div className="relative">
+      <input
+        type="text"
+        placeholder="Search"
+        className="border border-gray-300 rounded-md w-[400px] px-4 py-2 pl-10 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+      />
+      <SearchIcon
+        className="w-5 h-5 absolute left-3 top-2.5 text-gray-500"
+        aria-hidden="true"
+      />
+    </div>
             <div className="flex items-center space-x-4">
-              <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+              {/* <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
                 New Report
-              </button>
-              <div onClick={() => handleNavigateToSignin()} className="w-10 h-10 bg-gray-300 rounded-full" />
+              </button> */}
+               <Bell1Icon className="w-6 h-6 mr-6 text-gray-500 cursor-pointer hover:text-green-500" />
+               <QuestionMark1Icon className="w-6 h-6 mr-6 text-gray-500 cursor-pointer hover:text-green-500" />
+               <div></div>
+              <div onClick={() => handleNavigateToSignin()} className="w-10 h-10 bg-gray-300 rounded-full cursor-pointer hover:bg-gray-500" />
             </div>
           </header>
 

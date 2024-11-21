@@ -4,10 +4,10 @@ const SignInPage = () => {
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen bg-blue-100 relative">
       {/* Background and Design Elements */}
-      <div className="absolute top-0 left-0 w-full h-full bg-blue-300 shadow-lg"></div>
-      <div className="absolute top-[167px] right-[134px] w-[200px] h-[200px] bg-blue-500 rounded-full"></div>
-      <div className="absolute top-[460px] right-[126px] w-[214px] h-[380px] bg-blue-400 rounded-lg"></div>
-      <div className="absolute top-[334px] left-[-80px] w-[493px] h-[493px] bg-blue-200 rounded-full"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-green-300 shadow-lg"></div>
+      <div className="absolute top-[67px] right-[34px] w-[100px] h-[100px] bg-green-500 rounded-full"></div>
+      <div className="absolute top-[360px] right-[26px] w-[114px] h-[280px] bg-green-400 rounded-lg"></div>
+      <div className="absolute top-[234px] left-[-0px] w-[393px] h-[393px] bg-green-200 rounded-full"></div>
 
       {/* Main Sign-in Container */}
       <div className="relative z-10 w-[996px] h-[568px] bg-white rounded-lg shadow-lg flex flex-col items-center p-6">
@@ -79,15 +79,18 @@ const SignInPage = () => {
           />
           <label className="ml-2 text-sm text-gray-700">Remember me</label>
         </div>
-      </div>
 
-      {/* Footer */}
+        {/* Footer */}
       <div className="absolute bottom-8 flex items-center space-x-2 text-gray-600">
         <div>{"Doesn't have an account?"}</div>
         <a href="/signup" className="text-purple-600 hover:underline">
           Sign up
         </a>
       </div>
+      
+      </div>
+
+      
     </div>
   );
 };

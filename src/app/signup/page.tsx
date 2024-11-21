@@ -3,9 +3,15 @@ import React from "react";
 const SignUpPage = () => {
   return (
     <div className="relative flex items-center justify-center w-screen h-screen bg-white">
+      {/* Background and Design Elements */}
+      <div className="absolute top-0 left-0 w-full h-full bg-blue-300 shadow-lg"></div>
+      <div className="absolute top-[67px] right-[34px] w-[100px] h-[100px] bg-blue-500 rounded-full"></div>
+      <div className="absolute top-[360px] right-[26px] w-[114px] h-[280px] bg-blue-400 rounded-lg"></div>
+      <div className="absolute top-[234px] left-[-0px] w-[393px] h-[393px] bg-blue-200 rounded-full"></div>
+
       {/* Background Shapes */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-gray-200"></div>
-      <div className="absolute top-[46px] left-[657px] w-[740px] h-[913px] bg-cover bg-center bg-no-repeat rounded-lg shadow-lg" style={{ backgroundImage: "url('./images/rectangle80.jpg')" }}></div>
+      {/* <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-gray-200"></div>
+      <div className="absolute top-[46px] left-[657px] w-[740px] h-[913px] bg-cover bg-center bg-no-repeat rounded-lg shadow-lg" style={{ backgroundImage: "url('./images/rectangle80.jpg')" }}></div> */}
 
       {/* Main Container */}
       <div className="relative w-full max-w-lg p-8 bg-white rounded-xl shadow-lg z-10">
