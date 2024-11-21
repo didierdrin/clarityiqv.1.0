@@ -1,17 +1,7 @@
 'use client';
 import React, { useState} from "react";
 import { useRouter } from "next/navigation";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  PieChart,
-  Pie,
-  Cell,
-  Legend,
-} from "recharts";
+import Image from "next/image";
 
 import Dinaggregation from "@/components/dinaggregation";
 import DashboardSection from "@/components/dashboardsection";
@@ -27,28 +17,28 @@ import Bell1Icon from "../../public/icons/PlasmicIcon__Bell1"; // plasmic-import
 import SearchIcon from "../../public/icons/PlasmicIcon__Search"; // plasmic-import: oIoWRcUyEgWn/icon
 import Layout11Icon from "../../public/icons/PlasmicIcon__Layout11"; // plasmic-import: zToZXXJTB9dc/icon
 import FolderIcon from "../../public/icons/PlasmicIcon__Folder"; // plasmic-import: 90X0AxWg__s9/icon
-import Line1Icon from "../../public/icons/PlasmicIcon__Line1"; // plasmic-import: hCmqTbEa_XEh/icon
+// import Line1Icon from "../../public/icons/PlasmicIcon__Line1"; // plasmic-import: hCmqTbEa_XEh/icon
 import FarmerMarketIcon from "../../public/icons/PlasmicIcon__FarmerMarket"; // plasmic-import: 5cySklPsBu5b/icon
 import CalendarIcon from "../../public/icons/PlasmicIcon__Calendar"; // plasmic-import: c4V_2BCP5vb8/icon
 import FChatIcon from "../../public/icons/PlasmicIcon__FChat"; // plasmic-import: 6b5_xU8yWQFY/icon
 import CandlestickChartIcon from "../../public/icons/PlasmicIcon__CandlestickChart"; // plasmic-import: ZYZreGho0u9b/icon
 import WhiskersIcon from "../../public/icons/PlasmicIcon__Whiskers"; // plasmic-import: 6QYFPKXZ9GqK/icon
-import CurrencyDollar1Icon from "../../public/icons/PlasmicIcon__CurrencyDollar1"; // plasmic-import: USBnaJoUy1KG/icon
-import GroupIcon from "../../public/icons/PlasmicIcon__Group"; // plasmic-import: 6kUOcHOYzusH/icon
+// import CurrencyDollar1Icon from "../../public/icons/PlasmicIcon__CurrencyDollar1"; // plasmic-import: USBnaJoUy1KG/icon
+// import GroupIcon from "../../public/icons/PlasmicIcon__Group"; // plasmic-import: 6kUOcHOYzusH/icon
 import FrameIcon from "../../public/icons/PlasmicIcon__Frame"; // plasmic-import: 99I2RlQV67k2/icon
-import ArrowUp1Icon from "../../public/icons/PlasmicIcon__ArrowUp1"; // plasmic-import: LK1XmH1YC1N6/icon
-import Calendar2Icon from "../../public/icons/PlasmicIcon__Calendar2"; // plasmic-import: dFXdcIaHC61R/icon
-import ChevronDownLargeIcon from "../../public/icons/PlasmicIcon__ChevronDownLarge"; // plasmic-import: MF4N_3wKmh_O/icon
-import ChevronLeftLargeIcon from "../../public/icons/PlasmicIcon__ChevronLeftLarge"; // plasmic-import: d-ag9IpbSnw-/icon
-import Menu5Icon from "../../public/icons/PlasmicIcon__Menu5"; // plasmic-import: 7KzZjpFqGdS5/icon
-import ChevronRightLargeIcon from "../../public/icons/PlasmicIcon__ChevronRightLarge"; // plasmic-import: VaHzNZUH3H4M/icon
-import FunnelIcon from "../../public/icons/PlasmicIcon__Funnel"; // plasmic-import: LV7HMvfyS4Un/icon
-import EditAltIcon from "../../public/icons/PlasmicIcon__EditAlt"; // plasmic-import: dE6pqSHD6AWY/icon
-import Group2Icon from "../../public/icons/PlasmicIcon__Group2"; 
-import Menu51Icon from "../../public/icons/PlasmicIcon__Menu51"; 
-import EllipseIcon from "../../public/icons/PlasmicIcon__Ellipse"; 
-import Line40Icon from "../../public/icons/PlasmicIcon__Line40"; 
-import chartRt8T6Nkpz3Qc from "./images/chart.svg";  
+// import ArrowUp1Icon from "../../public/icons/PlasmicIcon__ArrowUp1"; // plasmic-import: LK1XmH1YC1N6/icon
+// import Calendar2Icon from "../../public/icons/PlasmicIcon__Calendar2"; // plasmic-import: dFXdcIaHC61R/icon
+// import ChevronDownLargeIcon from "../../public/icons/PlasmicIcon__ChevronDownLarge"; // plasmic-import: MF4N_3wKmh_O/icon
+// import ChevronLeftLargeIcon from "../../public/icons/PlasmicIcon__ChevronLeftLarge"; // plasmic-import: d-ag9IpbSnw-/icon
+// import Menu5Icon from "../../public/icons/PlasmicIcon__Menu5"; // plasmic-import: 7KzZjpFqGdS5/icon
+// import ChevronRightLargeIcon from "../../public/icons/PlasmicIcon__ChevronRightLarge"; // plasmic-import: VaHzNZUH3H4M/icon
+// import FunnelIcon from "../../public/icons/PlasmicIcon__Funnel"; // plasmic-import: LV7HMvfyS4Un/icon
+// import EditAltIcon from "../../public/icons/PlasmicIcon__EditAlt"; // plasmic-import: dE6pqSHD6AWY/icon
+// import Group2Icon from "../../public/icons/PlasmicIcon__Group2"; 
+// import Menu51Icon from "../../public/icons/PlasmicIcon__Menu51"; 
+// import EllipseIcon from "../../public/icons/PlasmicIcon__Ellipse"; 
+// import Line40Icon from "../../public/icons/PlasmicIcon__Line40"; 
+// import chartRt8T6Nkpz3Qc from "./images/chart.svg";  
 
 const Page = () => {
   const router = useRouter();
@@ -79,7 +69,7 @@ const Page = () => {
       <div className="grid grid-cols-12 gap-4">
         {/* Sidebar */}
         <aside className="col-span-2 bg-[#CCF6AD] shadow rounded-lg p-4 min-h-screen">
-          <img src="/images/image19.png" alt="logo" className="rounded-md mb-4"/>
+          <Image src="/images/image19.png" alt="logo" height="70" width="180" className="rounded-md mb-4"/>
           <hr className="border-slate-400" /><br />
           <nav>
           <ul className="space-y-2 relative">
