@@ -1,7 +1,8 @@
 'use client';
-import React, { Suspense, useState} from "react";
+import React, { Suspense, useState, useEffect} from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useAuth } from '@/providers/authprovider';
 
 import Dinaggregation from "@/components/dinaggregation";
 import DashboardSection from "@/components/dashboardsection";
@@ -41,7 +42,19 @@ import FrameIcon from "../../public/icons/PlasmicIcon__Frame"; // plasmic-import
 // import chartRt8T6Nkpz3Qc from "./images/chart.svg";  
 
 const Page = () => {
+  const { user, loading } = useAuth();
   const router = useRouter();
+
+  useEffect(() => {
+    if (!loading) {
+      if (user) {
+        router.push('/');
+      } else {
+        router.push('/signin');
+      }
+    }
+  }, [user, loading, router]);
+  
   const salesData = [
     { month: "Jan", sales: 4000 },
     { month: "Feb", sales: 3000 },

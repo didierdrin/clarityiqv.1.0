@@ -15,6 +15,17 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
 
+
+export const firebaseConfigInstant = {
+  apiKey: "AIzaSyATjNOsNvKjFsMhQXu59oZY8c_9Oyy1Go8",
+  authDomain: "clarityiq-fac57.firebaseapp.com",
+  projectId: "clarityiq-fac57",
+  storageBucket: "clarityiq-fac57.firebasestorage.app",
+  messagingSenderId: "503002085831",
+  appId: "1:503002085831:web:8971fbadc9a1884261c1e2",
+  measurementId: "G-K4W40MMCNT",
+};
+
 export { app, firestore };
 
 

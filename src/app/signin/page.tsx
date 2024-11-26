@@ -1,6 +1,72 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { auth, useAuth } from "@/providers/authprovider";
+import { setCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 
 const SignInPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const { login } = useAuth();
+  const router = useRouter();
+  const [loading, setLoading] = useState(false); // Add loading state
+
+  useEffect(() => {
+    // Update the title when loading starts or stops
+    if (loading) {
+      document.title = "Loggin in...";
+    } else {
+      document.title = "Login - ClarityIQ";
+    }
+  }, [loading]);
+
+  const navigatetoForgotpassword = () => {
+    document.title = "Forgot Password...";
+    window.location.href = "/forgotpassword";
+    router.push("/forgotpassword");
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+
+    setLoading(true); 
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const token = await userCredential.user.getIdToken();
+      setCookie("auth_token", token, { maxAge: 60 * 60 * 24 * 7 }); // 1 week
+      login(email, password);
+      setLoading(false);
+      window.location.href = "/";
+      router.push("/");
+    } catch (err) {
+      setError("Failed to log in. Please check your email/password.");
+      console.error(err);
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    setLoading(true); 
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const token = await result.user.getIdToken();
+      setCookie("auth_token", token, { maxAge: 60 * 60 * 24 * 7 }); // 1 week
+      setLoading(false); 
+      window.location.href = "/";
+      router.push("/");
+    } catch (error) {
+      setError("Failed to log in with Google. Please try again.");
+      console.error(error);
+      setLoading(false); 
+    }
+  };
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen bg-blue-100 relative">
       {/* Background and Design Elements */}
@@ -13,13 +79,18 @@ const SignInPage = () => {
       <div className="relative z-10 w-[996px] h-[568px] bg-white rounded-lg shadow-lg flex flex-col items-center p-6">
         {/* Title */}
         <h2 className="text-3xl font-bold text-gray-800 mb-4">Sign In</h2>
-
+        <form onSubmit={handleSubmit} className="">
+        {error && <p className="text-red-500 text-sm">{error}</p>}
         {/* Email Input */}
         <div className="relative w-[358px] mb-6">
           <input
+          id="email"
             type="email"
             placeholder="example.email@gmail.com"
             className="w-full h-12 px-4 bg-gray-200 rounded-md text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <label className="absolute left-4 top-[-8px] text-sm text-gray-600 bg-white px-1">
             Email
@@ -29,22 +100,28 @@ const SignInPage = () => {
         {/* Password Input */}
         <div className="relative w-[358px] mb-6">
           <input
-            type="password"
+          id="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Enter at least 8+ characters"
             className="w-full h-12 px-4 bg-gray-200 rounded-md text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <label className="absolute left-4 top-[-8px] text-sm text-gray-600 bg-white px-1">
             Password
           </label>
           <div className="absolute right-4 top-[14px] text-gray-500 cursor-pointer">
-            👁
+            {showPassword ? <FaEyeSlash /> : <FaEye /> }
           </div>
         </div>
 
         {/* Sign-in Button */}
-        <button className="w-[359px] h-12 bg-purple-600 text-white rounded-md shadow-md hover:bg-purple-800 transition">
+        <button type="submit" className="w-[359px] h-12 bg-purple-600 text-white rounded-md shadow-md hover:bg-purple-800 transition">
           Sign In
         </button>
+
+        </form>
 
         {/* Forgot Password */}
         <div className="mt-4 text-sm text-blue-600 cursor-pointer hover:underline">
@@ -60,15 +137,11 @@ const SignInPage = () => {
 
         {/* Social Sign-in Buttons */}
         <div className="flex space-x-4 mt-4">
-          <button className="flex items-center justify-center w-[81px] h-[36px] bg-gray-100 rounded-full shadow-sm">
-            <span className="text-blue-500">F</span>
+          
+          <button onClick={handleGoogleSignIn} className="flex items-center justify-center w-[240px] h-[36px] bg-slate-200 hover:bg-black rounded-full shadow-sm">
+            <span className="text-red-500">G Continue with Google</span>
           </button>
-          <button className="flex items-center justify-center w-[81px] h-[36px] bg-gray-100 rounded-full shadow-sm">
-            <span className="text-red-500">G</span>
-          </button>
-          <button className="flex items-center justify-center w-[81px] h-[36px] bg-gray-100 rounded-full shadow-sm">
-            <span className="text-black">A</span>
-          </button>
+          
         </div>
 
         {/* Remember Me */}
