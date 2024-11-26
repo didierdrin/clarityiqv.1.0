@@ -1,5 +1,5 @@
 'use client';
-import React, { useState} from "react";
+import React, { Suspense, useState} from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -275,7 +275,7 @@ const Page = () => {
           </header>
 
           {/* Charts and Stats */}
-          <div>
+          <div><Suspense fallback={<div>Loading...</div>}>
           {activeSection === "Dashboard" && <DashboardSection />}
                 {activeSection === "Dinaggregation" && <Dinaggregation />}
                  {activeSection === "BusinessProcess" && <BusinessProcess />}
@@ -284,8 +284,8 @@ const Page = () => {
                 {activeSection === "MarketnCompetitive" && <MarketAndCompetitivePage />}
                {activeSection === "RiskIdentification" && <RiskIdentification />}
                  {activeSection === "StrategicPlanning" && <DecisionSupport />}
-                {/* {activeSection === "SearchListing" && <PlasmicSearchListing />} */}
-             
+                {/* {activeSection === "SearchLi/sting" && <PlasmicSearchListing />} */}
+             </Suspense>
           </div>
           
         </main>
