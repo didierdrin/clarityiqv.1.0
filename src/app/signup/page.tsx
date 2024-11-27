@@ -147,9 +147,13 @@ const SignUpPage = () => {
             Email
           </label>
           <input
+          id="email"
             type="email"
             placeholder="example.email@gmail.com"
             className="w-full h-12 px-4 bg-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </div>
 
@@ -161,7 +165,7 @@ const SignUpPage = () => {
           <input
           id="password"
             type={showPassword ? "text" : "password"}
-            placeholder="example.email@gmail.com"
+            placeholder="example.password908"
             className="w-full h-12 px-4 bg-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
             value={password}
             onChange={(e) => setPassword(e.target.value)} 

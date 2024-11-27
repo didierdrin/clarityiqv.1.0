@@ -58,9 +58,9 @@ const RiskIdentification: React.FC = () => {
             Risk Identification & Management
           </h1>
           <div className="flex items-center space-x-4">
-            <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+            {/* <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
               Add Report
-            </button>
+            </button> */}
             <button className="px-4 py-2 border border-gray-300 text-gray-600 rounded-md hover:bg-gray-200">
               Export
             </button>

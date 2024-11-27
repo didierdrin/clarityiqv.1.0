@@ -2,6 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Root color variables */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --font-roboto: "Roboto", sans-serif;
+  --font-roboto-mono: "Roboto Mono", monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* Base styles */
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-roboto), Arial, Helvetica, sans-serif; /* Updated to use Roboto */
+}
+
+/* Monospace elements (e.g., code blocks, preformatted text) */
+code, pre {
+  font-family: var(--font-roboto-mono); /* Using Roboto Mono for monospace */
+}
+
+
+
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -18,4 +52,4 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
-}
+} */

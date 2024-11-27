@@ -61,7 +61,7 @@ const DashboardSection: React.FC = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-3 gap-6">
+    <div className="grid grid-cols-3 gap-6 mr-5">
       {/* Sales Overview */}
       <div className="bg-white shadow rounded-lg p-4">
         <h2 className="text-lg font-semibold mb-4">Sales Overview</h2>
@@ -121,7 +121,7 @@ const DashboardSection: React.FC = () => {
           </thead>
           <tbody>
             {detailedReport.map((report, index) => (
-              <tr key={index} className="border-t">
+              <tr key={index} className="border-t hover:bg-slate-200 cursor-pointer">
                 <td className="p-2">{report.product}</td>
                 <td className="p-2 text-right">{report.sales}</td>
                 <td className="p-2 text-right">{report.revenue}</td>
