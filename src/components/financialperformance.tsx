@@ -1,7 +1,22 @@
 // page.tsx
 import React from "react";
+import { PDFExportService } from "@/services/financialPerformanceService";
 
 const FinancialPerformance: React.FC = () => {
+
+  const handleExport = async () => {
+    try {
+      // Show loading indicator (optional)
+      await PDFExportService.generateFinancialPerformancePDF();
+      // Optionally show success message
+      alert('PDF Report Generated Successfully!');
+    } catch (error) {
+      console.error('Export failed:', error);
+      alert('Failed to generate PDF. Please try again.');
+    }
+  };
+
+
   return (
     <div className="min-h-screen  flex">
       
@@ -12,7 +27,7 @@ const FinancialPerformance: React.FC = () => {
             Financial Performance Dashboard
           </h1>
           <div className="flex space-x-4">
-            <button className="flex items-center px-4 py-2 border border-purple-500 text-purple-500 rounded-md hover:bg-purple-50">
+            <button onClick={handleExport} className="flex items-center px-4 py-2 border border-purple-500 text-purple-500 rounded-md hover:bg-purple-50">
               <svg
                 className="w-4 h-4 mr-2"
                 fill="none"
@@ -29,7 +44,7 @@ const FinancialPerformance: React.FC = () => {
               </svg>
               Export
             </button>
-            <button className="flex items-center px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">
+            {/* <button className="flex items-center px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">
               <svg
                 className="w-4 h-4 mr-2"
                 fill="none"
@@ -45,7 +60,7 @@ const FinancialPerformance: React.FC = () => {
                 ></path>
               </svg>
               Add Report
-            </button>
+            </button> */}
           </div>
         </header>
 
@@ -81,20 +96,9 @@ const FinancialPerformance: React.FC = () => {
 
         {/* Pagination */}
         <footer className="flex justify-between items-center mt-8">
-          <p className="text-sm text-gray-500">106 results</p>
+          <p className="text-sm text-gray-500"><b>Note:</b> All the KPIs data are exported in one document</p>
           <div className="flex space-x-2">
-            <button className="px-3 py-1 bg-gray-200 text-gray-600 rounded-md hover:bg-gray-300">
-              Previous
-            </button>
-            <button className="px-3 py-1 bg-gray-200 text-gray-600 rounded-md hover:bg-gray-300">
-              1
-            </button>
-            <button className="px-3 py-1 bg-gray-200 text-gray-600 rounded-md hover:bg-gray-300">
-              2
-            </button>
-            <button className="px-3 py-1 bg-gray-200 text-gray-600 rounded-md hover:bg-gray-300">
-              Next
-            </button>
+           
           </div>
         </footer>
       </main>

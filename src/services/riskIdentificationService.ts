@@ -60,14 +60,3 @@ export const RiskIdentificationService = {
 };
 
 
-
-// import { getFirestore, getDocs, collection } from "firebase/firestore";
-// import { RiskManagementData } from "@/interfaces/interfaces";
-
-// export const RiskIdentificationService = {
-//   async fetchRiskManagementData(): Promise<RiskManagementData[]> {
-//     const db = getFirestore();
-//     const snapshot = await getDocs(collection(db, "risk_management"));
-//     return snapshot.docs.map((doc) => doc.data()) as RiskManagementData[];
-//   },
-// };

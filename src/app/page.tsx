@@ -32,7 +32,7 @@ import FChatIcon from "../../public/icons/PlasmicIcon__FChat"; // plasmic-import
 import CandlestickChartIcon from "../../public/icons/PlasmicIcon__CandlestickChart"; // plasmic-import: ZYZreGho0u9b/icon
 import WhiskersIcon from "../../public/icons/PlasmicIcon__Whiskers"; // plasmic-import: 6QYFPKXZ9GqK/icon
 // import CurrencyDollar1Icon from "../../public/icons/PlasmicIcon__CurrencyDollar1"; // plasmic-import: USBnaJoUy1KG/icon
-// import GroupIcon from "../../public/icons/PlasmicIcon__Group"; // plasmic-import: 6kUOcHOYzusH/icon
+ import GroupIcon from "../../public/icons/PlasmicIcon__Group"; // plasmic-import: 6kUOcHOYzusH/icon
 import FrameIcon from "../../public/icons/PlasmicIcon__Frame"; // plasmic-import: 99I2RlQV67k2/icon
 import { DinaggregationService } from "@/services/dinaggregationService";
 import { DataSource } from "@/interfaces/interfaces"; 
@@ -258,7 +258,7 @@ const Page = () => {
             : "bg-transparent text-gray-700 hover:bg-green-500 hover:text-white"
         }`}
       >
-        <FrameIcon
+        <FChatIcon
           className={`w-6 h-6 mr-4 ${
             activeSection === "StrategicPlanning" ? "text-white" : "text-gray-500"
           }`}

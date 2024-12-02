@@ -281,13 +281,21 @@ const Dinaggregation: React.FC = () => {
   };
 
 
-
-
-
-
-
-
-
+  const handleDeleteDataSource = async (id: string) => {
+    try {
+      // Optional: Add a confirmation dialog
+      const confirmDelete = window.confirm("Are you sure you want to delete this data source?");
+      
+      if (confirmDelete) {
+        await DinaggregationService.deleteDataSource(id);
+        // The real-time listener (onSnapshot) will automatically update the UI
+      }
+    } catch (error) {
+      console.error("Error deleting data source:", error);
+      // Optional: Add error notification
+      alert("Failed to delete data source. Please try again.");
+    }
+  };
   
 
   return (
@@ -335,7 +343,7 @@ const Dinaggregation: React.FC = () => {
             <span>{source.status}</span>
             <span>{source.syncFrequency}</span>
             <span>{source.lastSyncedDate}</span>
-            <button className="text-red-500">Delete</button>
+            <button onClick={() => handleDeleteDataSource(source.id!)} className="text-red-500">Delete</button>
           </div>
         ))}
       </div>

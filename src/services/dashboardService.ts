@@ -76,16 +76,3 @@ export const DashboardService = {
 };
 
 
-
-
-// import { getFirestore, getDocs, collection } from "firebase/firestore";
-// import { DashboardData } from "@/interfaces/interfaces";
-
-// export const DashboardService = {
-//   async fetchDashboardData(): Promise<DashboardData> {
-//     const db = getFirestore();
-//     const snapshot = await getDocs(collection(db, "dashboard"));
-//     const data = snapshot.docs.map((doc) => doc.data()) as DashboardData[];
-//     return data[0]; // Assuming a single dashboard data record
-//   },
-// };

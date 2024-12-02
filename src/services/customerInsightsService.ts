@@ -98,15 +98,3 @@ export const CustomerInsightsService = {
 };
 
 
-
-
-// import { getFirestore, getDocs, collection } from "firebase/firestore";
-// import { CustomerInsightsData } from "@/interfaces/interfaces";
-
-// export const CustomerInsightsService = {
-//   async fetchCustomerInsights(): Promise<CustomerInsightsData[]> {
-//     const db = getFirestore();
-//     const snapshot = await getDocs(collection(db, "customer_insights"));
-//     return snapshot.docs.map((doc) => doc.data()) as CustomerInsightsData[];
-//   },
-// };
