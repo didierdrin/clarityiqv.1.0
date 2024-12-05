@@ -3,15 +3,15 @@ import { DinaggregationService } from "@/services/dinaggregationService";
 import Chart from "chart.js/auto";
 import jsPDF from 'jspdf';
 
+import { jsPDF as jsPDFType } from "jspdf";
+import { UserOptions } from 'jspdf-autotable';
 
-import 'jspdf-autotable';
-
+// Extend jsPDF type to include autoTable method
 declare module 'jspdf' {
   interface jsPDF {
-    autoTable: (options: any) => jsPDF & { 
-      previous: {
-        finalY: number;
-      };
+    autoTable: (options: UserOptions) => jsPDF;
+    previousAutoTable?: {
+      finalY: number;
     };
   }
 }
@@ -143,7 +143,16 @@ const BusinessProcess: React.FC = () => {
   }
 
 
+
+
+
   const exportToPDF = useCallback(() => {
+    // Check if dataSources is empty
+    if (dataSources.length === 0) {
+      alert('No data available to export.');
+      return;
+    }
+  
     try {
       const doc = new jsPDF();
   
@@ -151,13 +160,13 @@ const BusinessProcess: React.FC = () => {
       doc.setFontSize(18);
       doc.text("Business Process Analysis Report", 14, 22);
   
-      // Increase Y position to prevent overlap
       let startY = 30;
   
       // Process Visualization Data Table
       doc.setFontSize(12);
       doc.text("Process Visualization", 14, startY + 20);
-      const processTable = doc.autoTable({
+      
+      doc.autoTable({
         startY: startY + 25,
         head: [['Name', 'Stock Quantity']],
         body: processVisualizationData.map(item => [
@@ -166,12 +175,13 @@ const BusinessProcess: React.FC = () => {
         ]),
         theme: 'striped'
       });
-  
-      startY = processTable.previous.finalY;
+      
+      // Get the final Y position safely
+      startY = doc.previousAutoTable ? doc.previousAutoTable.finalY : startY + 50;
   
       // Optimization Recommendations Table
       doc.text("Optimization Recommendations", 14, startY + 10);
-      const optimizationTable = doc.autoTable({
+      doc.autoTable({
         startY: startY + 15,
         head: [['Name', 'Conversion Rate']],
         body: optimizationRecommendationsData.map(item => [
@@ -180,12 +190,13 @@ const BusinessProcess: React.FC = () => {
         ]),
         theme: 'striped'
       });
-  
-      startY = optimizationTable.previous.finalY;
+      
+      // Get the final Y position safely
+      startY = doc.previousAutoTable ? doc.previousAutoTable.finalY : startY + 50;
   
       // Performance Issues Table
       doc.text("Performance Issues", 14, startY + 10);
-      const performanceTable = doc.autoTable({
+      doc.autoTable({
         startY: startY + 15,
         head: [['Name', 'Resolution Time']],
         body: performanceIssuesData.map(item => [
@@ -194,8 +205,9 @@ const BusinessProcess: React.FC = () => {
         ]),
         theme: 'striped'
       });
-  
-      startY = performanceTable.previous.finalY;
+      
+      // Get the final Y position safely
+      startY = doc.previousAutoTable ? doc.previousAutoTable.finalY : startY + 50;
   
       // Detailed Process Analysis Table
       doc.text("Detailed Process Analysis", 14, startY + 10);
@@ -213,7 +225,7 @@ const BusinessProcess: React.FC = () => {
       doc.save("Business_Process_Analysis_Report.pdf");
     } catch (error) {
       console.error('PDF Generation Error:', error);
-      alert('Failed to generate PDF. Please check the console for details.');
+      alert(`Failed to generate PDF: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }, [
     processVisualizationData, 
@@ -224,17 +236,12 @@ const BusinessProcess: React.FC = () => {
 
 // Add this method to handle the export
 const handleExport = useCallback(() => {
-  try {
-    if (dataSources.length === 0) {
-      alert('No data available to export.');
-      return;
-    }
-    exportToPDF();
-    alert('PDF Report Generated Successfully!');
-  } catch (error) {
-    console.error('Export failed:', error);
-    alert('Failed to generate PDF. Please try again.');
+  if (dataSources.length === 0) {
+    alert('No data available to export.');
+    return;
   }
+
+  exportToPDF();
 }, [exportToPDF, dataSources]);
 
 
