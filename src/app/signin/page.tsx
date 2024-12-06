@@ -4,7 +4,7 @@ import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 
 import { auth, useAuth } from "@/providers/authprovider";
 import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 
 
 const SignInPage = () => {
@@ -111,7 +111,7 @@ const SignInPage = () => {
           <label className="absolute left-4 top-[-8px] text-sm text-gray-600 bg-white px-1">
             Password
           </label>
-          <div className="absolute right-4 top-[14px] text-gray-500 cursor-pointer">
+          <div onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-[14px] text-gray-500 cursor-pointer">
             {showPassword ? <FaEyeSlash /> : <FaEye /> }
           </div>
         </div>
@@ -124,9 +124,9 @@ const SignInPage = () => {
         </form>
 
         {/* Forgot Password */}
-        <div className="mt-4 text-sm text-blue-600 cursor-pointer hover:underline">
+        {/* <div className="mt-4 text-sm text-blue-600 cursor-pointer hover:underline">
           Forgot password?
-        </div>
+        </div> */}
 
         {/* Or Sign In With */}
         <div className="flex items-center mt-6">
@@ -138,9 +138,13 @@ const SignInPage = () => {
         {/* Social Sign-in Buttons */}
         <div className="flex space-x-4 mt-4">
           
-          <button onClick={handleGoogleSignIn} className="flex items-center justify-center w-[240px] h-[36px] bg-slate-200 hover:bg-black rounded-full shadow-sm">
-            <span className="text-red-500">G Continue with Google</span>
-          </button>
+        <button
+  onClick={handleGoogleSignIn}
+  className="flex items-center justify-center w-[240px] h-[36px] bg-slate-200 hover:bg-black rounded-full shadow-sm"
+>
+  <FaGoogle className="text-red-500 mr-2" />  {/* Add the Google icon with some margin */}
+  <span className="text-red-500">Continue with Google</span>
+</button>
           
         </div>
 

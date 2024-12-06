@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, useAuth } from "@/providers/authprovider";
 import { setCookie } from "cookies-next";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { getFirestore, doc, setDoc } from "firebase/firestore"; // Import Firestore
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useRouter } from "next/navigation"; 
@@ -126,9 +126,13 @@ const SignUpPage = () => {
 
         {/* Social Sign-Up Buttons */}
         <div className="flex justify-around mb-6">
-          <button onClick={handleGoogleSignIn} className="flex items-center justify-center w-[240px] h-16 bg-red-600 text-white rounded-full shadow-md hover:bg-black transition">
-            <span className="text-lg">G Continue with Google</span>
-          </button>
+        <button
+  onClick={handleGoogleSignIn}
+  className="flex items-center justify-center w-[240px] h-[36px] bg-slate-200 hover:bg-black rounded-full shadow-sm"
+>
+  <FaGoogle className="text-red-500 mr-2" />  {/* Add the Google icon with some margin */}
+  <span className="text-red-500">Continue with Google</span>
+</button>
           
           
         </div>
@@ -158,7 +162,7 @@ const SignUpPage = () => {
         </div>
 
         {/* Password Input */}
-        <div className="mb-6">
+        <div className=" mb-6">
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Password
           </label>
@@ -171,6 +175,10 @@ const SignUpPage = () => {
             onChange={(e) => setPassword(e.target.value)} 
             required
           />
+          <div onClick={() => setShowPassword(!showPassword)} className="relative float-right top-[-30px] right-[20px] text-gray-500 cursor-pointer">
+            {showPassword ? <FaEyeSlash /> : <FaEye /> }
+          </div>
+          
         </div>
         {/* Confirm Password Input */}
         <div className="mb-6">
@@ -186,6 +194,10 @@ const SignUpPage = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
+        <div onClick={() => setShowPassword(!showPassword)} className="relative float-right top-[-30px] right-[20px] text-gray-500 cursor-pointer">
+            {showPassword ? <FaEyeSlash /> : <FaEye /> }
+          </div>
+          
         </div>
 
         {/* Continue Button */}
